@@ -7,21 +7,26 @@
     <link rel="stylesheet" href="./assets/css/styles.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
-<body>
-    <h1>Delete Repo</h1>
-    <form id="delete-form">
-        <label for="token">Token do GitHub</label>
-        <input type="text" id="token" name="token" required>
-        <br>
-        <label for="repos">Repositórios (um por linha, no formato username/repository):</label>
-        <textarea id="repos" name="repos" rows="10" required></textarea>
-        <br>
-        <button type="submit">Deletar Repositórios</button>
-    </form>
-    <div id="output"></div>
+<body class="d-flex justify-content-center align-items-center vh-100 bg-dark">
+    <div class="container d-flex justify-content-center align-items-center">
+        <div>
+            <h1 class="mt-5 text-center text-light">Delete Repo</h1>
+            <form id="delete-form" class="mt-4">
+                <div class="mb-3">
+                    <label for="token" class="form-label text-light">Token do GitHub</label>
+                    <input type="text" class="form-control" id="token" name="token" required>
+                </div>
+                <div class="mb-3">
+                    <label for="repos" class="form-label text-light">Repositórios (um por linha, no formato username/repository):</label>
+                    <textarea class="form-control" id="repos" name="repos" rows="10" required></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Deletar Repositórios</button>
+            </form>
+            <div id="output" class="mt-4"></div>
+        </div>
+    </div>
 
     <script src="./assets/js/script.js"></script>
-
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
