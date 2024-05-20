@@ -42,7 +42,7 @@ form.addEventListener('submit', function(e) {
 
 // Função para exibir as mensagens na div de saída
 function outputMessage(message) {
-    const messageParagraph = document.createElemente('p');
+    const messageParagraph = document.createElement('p');
     messageParagraph.textContent = message;
     outputDiv.appendChild(messageParagraph);
 }
