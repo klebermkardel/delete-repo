@@ -7,7 +7,16 @@
     <link rel="stylesheet" href="./assets/css/styles.css">
 </head>
 <body>
-    
+    <h1>Delete Repo</h1>
+    <form id="delete-form">
+        <label for="token">Token do GitHub</label>
+        <input type="text" id="token" name="token" required>
+        <br>
+        <label for="repos">Repositórios (um por linha, no formato username/repository):</label>
+        <textarea id="repos" name="repos" rows="10" required></textarea>
+        <br>
+        <button type="submit">Deletar Repositórios</button>
+    </form>
 
     <script src="./assets/js/script.js"></script>
 </body>
