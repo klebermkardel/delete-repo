@@ -13,3 +13,10 @@ form.addEventListener('submit', function(e) {
     const repos = reposInput.value.split('\n').filter(repo => repo.trim () !== '');
 });
 
+// Função para exibir as mensagens na div de saída
+function outputMessage(message) {
+    const messageParagraph = document.createElemente('p');
+    messageParagraph.textContent = message;
+    outputDiv.appendChild(messageParagraph);
+}
+
