@@ -40,7 +40,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     outputMessage(`Falha ao deletar repositório ${repo}. Status code: ${response.status}`);
                 }
             } catch (error) {
-                outputMessage(`Erro ao deletar repositório ${repo}: ${error.status} ${error.message}`);
+                outputMessage(`Erro ao deletar repositório ${repo}: ${error.status || ''} ${error.message}`);
             }
         }
     });
@@ -48,6 +48,8 @@ document.addEventListener("DOMContentLoaded", () => {
     function outputMessage(message) {
         const messageParagraph = document.createElement('p');
         messageParagraph.textContent = message;
+        messageParagraph.classList.add('text-light'); // Adiciona uma classe para estilizar o texto
         outputDiv.appendChild(messageParagraph);
+        console.log(message); // Adiciona o log para depuração
     }
 });
