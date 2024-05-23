@@ -1,16 +1,14 @@
-import { Octokit } from '@octokit/core';
+import axios from 'axios';
 
 document.addEventListener("DOMContentLoaded", () => {
     const form = document.getElementById('delete-form');
-    const tokenInput = document.getElementById('token');
-    const reposInput = document.getElementById('repos');
     const outputDiv = document.getElementById('output');
 
     form.addEventListener('submit', async function(e) {
         e.preventDefault();
 
-        const token = tokenInput.value;
-        const repos = reposInput.value.split('\n').filter(repo => repo.trim() !== '');
+        const token = document.getElementById('token').value;
+        const repos = document.getElementById('repos').value.split('\n').filter(repo => repo.trim() !== '');
         outputDiv.innerHTML = '';
 
         if (!token) {
@@ -18,38 +16,18 @@ document.addEventListener("DOMContentLoaded", () => {
             return;
         }
 
-        const octokit = new Octokit({ auth: token });
-
-        for (const repo of repos) {
-            try {
-                const [owner, repoName] = repo.trim().split('/');
-
-                if (!owner || !repoName) {
-                    outputMessage(`Formato inválido para o repositório: ${repo}. Use o formato username/repository.`);
-                    continue;
-                }
-
-                const response = await octokit.request('DELETE /repos/{owner}/{repo}', {
-                    owner,
-                    repo: repoName
-                });
-
-                if (response.status === 204) {
-                    outputMessage(`Repositório ${repo} deletado com sucesso.`);
-                } else {
-                    outputMessage(`Falha ao deletar repositório ${repo}. Status code: ${response.status}`);
-                }
-            } catch (error) {
-                outputMessage(`Erro ao deletar repositório ${repo}: ${error.status || ''} ${error.message}`);
-            }
+        try {
+            const response = await axios.post('http://localhost:3000/delete-repo', { token, repos });
+            response.data.messages.forEach(msg => outputMessage(msg));
+        } catch (error) {
+            outputMessage(`Erro ao deletar repositório: ${error.response?.data.error || error.message}`);
         }
     });
 
     function outputMessage(message) {
         const messageParagraph = document.createElement('p');
         messageParagraph.textContent = message;
-        messageParagraph.classList.add('text-light'); // Adiciona uma classe para estilizar o texto
+        messageParagraph.classList.add('text-light');
         outputDiv.appendChild(messageParagraph);
-        console.log(message); // Adiciona o log para depuração
     }
 });

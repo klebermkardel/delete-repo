@@ -1,6 +1,12 @@
-export default {
-    root: '.',
-    server: {
-        open: true,
-    },
-};
+import { defineConfig } from 'vite';
+
+export default defineConfig({
+  root: 'public',
+  build: {
+    outDir: '../dist'
+  },
+  server: {
+    port: 5173,
+    open: true
+  }
+});
